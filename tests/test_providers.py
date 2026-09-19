@@ -57,6 +57,11 @@ class ProviderTests(unittest.TestCase):
         sdk = openai.OpenAI if provider == "openai" else anthropic.Anthropic
         target = "openai.OpenAI" if provider == "openai" else "anthropic.Anthropic"
         env = {"COURSE_MODEL": "student-selected-model", f"{provider.upper()}_API_KEY": "test-only"}
+        if provider == "anthropic":
+            # Short-circuits the SDK's auto-discovery check before it falls back to
+            # pathlib.Path.home(), which raises on Windows once clear=True below
+            # strips USERPROFILE/APPDATA from the environment.
+            env["ANTHROPIC_CONFIG_DIR"] = "."
         with patch.dict(os.environ, env, clear=True), patch(target) as factory:
             factory.side_effect = lambda **kw: sdk(
                 **kw, http_client=httpx.Client(transport=httpx.MockTransport(respond))
