@@ -16,7 +16,7 @@ Google credits and individual Google Cloud projects begin September 21;
 aim for live readiness by September 28. Setup has no separate grade or
 verification submission. Report access delays for instructor support and
 continue the reflection and design work; optional purchases are unnecessary.
-The diagnostic's “Setup Verification” labels describe technical check results,
+The diagnostic's "Setup Verification" labels describe technical check results,
 not a separate course assignment. Project tests and live evaluations remain
 required evidence for the midterm and final.
 
